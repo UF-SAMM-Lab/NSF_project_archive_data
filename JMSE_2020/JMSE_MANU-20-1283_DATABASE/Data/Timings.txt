@@ -1,0 +1,189 @@
+SCENARIO A, VARIANT 1
+
+trajectory execution time 
+
+segment 1:    5.6                                           
+segment 2:    2.8                    
+segment 3:    0                   
+segment 4:    2.8                    
+segment 5:    6.9                           
+segment 6:    2.5                       
+segment 7:    0                             
+segment 8:    2.5                           
+segment 9:    0                        
+segment 10:   2.7                    
+segment 11:   0                          
+segment 12:   2.7                        
+segment 13:   4.1                             
+segment 14:   0                              
+segment 15:   2.5                        
+segment 16:   0                      
+segment 17:   2.5                            
+segment 18:   4.3                                   
+segment 19:   5.6 
+                        
+Elapsed time for READING process: 0.000606976
+Elapsed time for PLANNING process: 0.765949
+Elapsed time for CONNECTION process: 0.00500996
+
+
+SCENARIO A, VARIANT 2
+
+trajectory execution time 
+
+segment 1:    5.6                                           
+segment 2:    2.8                    
+segment 3:    0                   
+segment 4:    2.8                    
+segment 5':   6.9 
+segment 5'':  5.7 (After the stop, Elapsed time for STOP AND GO process: 0.000166063)        
+segment 6:    2.5                       
+segment 7:    0                             
+segment 8:    2.5                           
+segment 9:    0                        
+segment 10:   2.7                    
+segment 11:   0                          
+segment 12:   2.7                        
+segment 13':  4.1
+segment 13'': 2.2 (After the stop, Elapsed time for STOP AND GO process: 0.000113811)                             
+segment 14:   0                              
+segment 15:   2.5                        
+segment 16:   0                      
+segment 17:   2.5                            
+segment 18:   4.3                                   
+segment 19:   5.6 
+                        
+Elapsed time for READING process: 0.000594354
+Elapsed time for PLANNING process: 0.768303
+Elapsed time for CONNECTION process: 0.00125535
+
+
+SCENARIO A, VARIANT 3
+
+trajectory execution time 
+
+segment 1:    5.6                                           
+segment 2:    2.8                    
+segment 3:    0                   
+segment 4:    2.8                    
+segment 5':   6.9 
+segment 5'':  9.7 (After the stop, Elapsed time for RECONNECT process: 4.15623 with 4.0 of sleep)                           
+segment 6:    2.5                       
+segment 7:    0                             
+segment 8:    2.5                           
+segment 9:    0                        
+segment 10:   2.7                    
+segment 11:   0                          
+segment 12:   2.7                        
+segment 13':  4.1
+segment 13'': 2.2 (After the stop, Elapsed time for STOP AND GO process: 0.00016482)                             
+segment 14:   0                              
+segment 15:   2.5                        
+segment 16:   0                      
+segment 17:   2.5                            
+segment 18:   4.3                                   
+segment 19:   5.6 
+                        
+Elapsed time for READING process: 0.000608428
+Elapsed time for PLANNING process: 0.770634
+Elapsed time for CONNECTION process: 0.0104565
+
+Reconnect plan segment 5:
+Solution found in 0.012628 seconds
+Path simplification took 0.015911 seconds
+
+
+
+
+SCENARIO B, VARIANT 1
+
+trajectory execution time 
+
+segment 1:    5.6                                           
+segment 2:    2.8                    
+segment 3:    0                   
+segment 4:    2.8                    
+segment 5:    8.3                           
+segment 6:    2.5                       
+segment 7:    0                             
+segment 8:    2.5                           
+segment 9:    0                        
+segment 10:   2.7                    
+segment 11:   0                          
+segment 12:   2.7                        
+segment 13:   5.5                            
+segment 14:   0                              
+segment 15:   2.5                        
+segment 16:   0                      
+segment 17:   2.5                            
+segment 18:   4.3                                   
+segment 19:   5.6 
+
+Elapsed time for READING process: 0.000591406
+Elapsed time for PLANNING process: 0.772693
+Elapsed time for CONNECTION process: 0.00699926
+
+
+SCENARIO B, VARIANT 2
+
+trajectory execution time 
+
+segment 1:    5.6                                           
+segment 2:    2.8                    
+segment 3:    0                   
+segment 4:    2.8                    
+segment 5':   8.3 
+segment 5'':  7.0  (After the stop, Elapsed time for STOP AND GO process: 0.000159066)                         
+segment 6:    2.5                       
+segment 7:    0                             
+segment 8:    2.5                           
+segment 9:    0                        
+segment 10:   2.7                    
+segment 11:   0                          
+segment 12:   2.7                        
+segment 13':  5.5 
+segment 13'': 2.5  (After the stop, Elapsed time for STOP AND GO process: 0.000110474)                           
+segment 14:   0                              
+segment 15:   2.5                        
+segment 16:   0                      
+segment 17:   2.5                            
+segment 18:   4.3                                   
+segment 19:   5.6 
+
+Elapsed time for READING process: 0.000483626
+Elapsed time for PLANNING process: 0.723225
+Elapsed time for CONNECTION process: 0.00843089
+
+
+SCENARIO B, VARIANT 3
+
+trajectory execution time 
+
+segment 1:    5.6                                           
+segment 2:    2.8                    
+segment 3:    0                   
+segment 4:    2.8                    
+segment 5':   8.3 
+segment 5'':  8.7  (After the stop, Elapsed time for RECONNECT process: 4.13493 with 4.0 of sleep)                          
+segment 6:    2.5                       
+segment 7:    0                             
+segment 8:    2.5                           
+segment 9:    0                        
+segment 10:   2.7                    
+segment 11:   0                          
+segment 12:   2.7                        
+segment 13':  5.5 
+segment 13'': 2.5  (After the stop, Elapsed time for STOP AND GO process: 0.00013868)                          
+segment 14:   0                              
+segment 15:   2.5                        
+segment 16:   0                      
+segment 17:   2.5                            
+segment 18:   4.3                                   
+segment 19:   5.6 
+
+Elapsed time for READING process: 0.000483626
+Elapsed time for PLANNING process: 0.723225
+Elapsed time for CONNECTION process: 0.00843089
+
+Solution found in 0.012003 seconds
+Path simplification took 0.023154 seconds

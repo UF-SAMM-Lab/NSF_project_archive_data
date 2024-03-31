@@ -1,0 +1,173 @@
+---
+title: "stap_ppf_italy_data"
+output: html_document
+date: "2023-07-17"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Participant data
+
+
+```{r}
+data <- read.csv("all_part_data.csv")
+attach(data); rnames<-names(data)
+head(data)
+# task_1_data <- data[task==1,]
+# task_2_data = data[task==2,]
+# task_3_data = data[task==3,]
+# head(task_1_data)
+# interaction.plot(task_1_data$experience, task_1_data$method,task_1_data$safety.score)
+# interaction.plot(task_1_data$experience, task_1_data$method,task_1_data$hinderance.score)
+# interaction.plot(task_1_data$experience, task_1_data$method,task_1_data$logic.score)
+# interaction.plot(task_1_data$experience, task_1_data$method,task_1_data$coworker.score)
+# interaction.plot(task_2_data$experience, task_2_data$method,task_2_data$safety.score)
+# interaction.plot(task_2_data$experience, task_2_data$method,task_2_data$hinderance.score)
+# interaction.plot(task_2_data$experience, task_2_data$method,task_2_data$logic.score)
+# interaction.plot(task_2_data$experience, task_2_data$method,task_2_data$coworker.score)
+# interaction.plot(task_3_data$experience, task_3_data$method,task_3_data$safety.score)
+# interaction.plot(task_3_data$experience, task_3_data$method,task_3_data$hinderance.score)
+# interaction.plot(task_3_data$experience, task_3_data$method,task_3_data$logic.score)
+# interaction.plot(task_3_data$experience, task_3_data$method,task_3_data$coworker.score)
+
+
+```
+```{r}
+correlations<-matrix(,nrow=0,ncol=13)
+col_names <- c()
+row_names <- c()
+
+for (t in 1:3) {
+  for (m in 1:5) {
+    if ((t>1) || (m<4)) {
+      col_names<-cbind(col_names,paste("t",t,"m",m))
+    }
+  }
+}
+for (c in 4:13) {
+  for (k in (c+1):14) {
+    correlation<-matrix(,nrow=2,ncol=0)
+    for (t in 1:3) {
+      for (m in 1:5) {
+        test.c1 = data[,c][task==t & method==m]
+        if (length(test.c1)>0) {
+          test.c2 = data[,k][task==t & method==m]
+          cor_res<-cor.test(test.c1,test.c2)
+          correlation<-cbind(correlation,c(cor_res$conf.int))
+        }
+      }
+    }
+    row_names <- cbind(row_names,paste(rnames[c],"v",rnames[k]))
+    row_names <- cbind(row_names,paste(rnames[c],"v",rnames[k]))
+    correlations<-rbind(correlations,correlation)
+  }
+}
+colnames(correlations)<-col_names
+rownames(correlations)<-row_names
+print(correlations)
+```
+```{r}
+write.csv(correlations,file="correlations.csv",row.names=TRUE)
+write.table(correlations,file="correlations.txt")
+```
+
+```{r}
+correlations<-matrix(,nrow=0,ncol=3)
+col_names <- c()
+row_names <- c()
+
+for (t in 1:3) {
+      col_names<-cbind(col_names,paste("t",t))
+}
+for (c in 4:13) {
+  for (k in (c+1):14) {
+    correlation<-matrix(,nrow=2,ncol=0)
+    for (t in 1:3) {
+      test.c1 = data[,c][task==t]
+      if (length(test.c1)>0) {
+        test.c2 = data[,k][task==t]
+        cor_res<-cor.test(test.c1,test.c2)
+        correlation<-cbind(correlation,c(cor_res$conf.int))
+      }
+    }
+    row_names <- cbind(row_names,paste(rnames[c],"v",rnames[k]))
+    row_names <- cbind(row_names,paste(rnames[c],"v",rnames[k]))
+    correlations<-rbind(correlations,correlation)
+  }
+}
+colnames(correlations)<-col_names
+rownames(correlations)<-row_names
+print(correlations)
+write.csv(correlations,file="correlations_tasks.csv",row.names=TRUE)
+```
+
+```{r}
+x_safety<-matrix(,nrow=2,ncol=0)
+x_separation<-matrix(,nrow=2,ncol=0)
+x_hinder<-matrix(,nrow=2,ncol=0)
+x_logic<-matrix(,nrow=2,ncol=0)
+x_coworker<-matrix(,nrow=2,ncol=0)
+x_t_u_0.3m<-matrix(,nrow=2,ncol=0)
+x_robot_time<-matrix(,nrow=2,ncol=0)
+col_names <- c()
+for (t in 1:3) {
+  for (m in 1:5) {
+    test.experience = experience[task==t & method==m]
+    if (length(test.experience)>0) {
+      test.safety = safety.score[task==t & method==m]
+      test.avg.separation = avg..separation[task==t & method==m]
+      test.avg.time.u.0.3m = avg..time.under.0.3m[task==t & method==m]
+      test.avg.robot_time = avg..robot.time[task==t & method==m]
+      test.hinderance = hinderance.score[task==t & method==m]
+      test.logic = logic.score[task==t & method==m]
+      test.coworker = coworker.score[task==t & method==m]
+      mod1 <- lm(test.safety ~ test.experience)
+      x_conf_int<-confint(mod1)
+      x_safety<-cbind(x_safety,c(x_conf_int[2,]))
+      mod1 <- lm(test.avg.separation ~ test.experience)
+      x_conf_int<-confint(mod1)
+      x_separation<-cbind(x_separation,c(x_conf_int[2,]))
+      mod1 <- lm(test.hinderance ~ test.experience)
+      x_conf_int<-confint(mod1)
+      x_hinder<-cbind(x_hinder,c(x_conf_int[2,]))
+      mod1 <- lm(test.logic ~ test.experience)
+      x_conf_int<-confint(mod1)
+      x_logic<-cbind(x_logic,c(x_conf_int[2,]))
+      mod1 <- lm(test.coworker ~ test.experience)
+      x_conf_int<-confint(mod1)
+      x_coworker<-cbind(x_coworker,c(x_conf_int[2,]))
+      mod1 <- lm(test.avg.time.u.0.3m ~ test.experience)
+      x_conf_int<-confint(mod1)
+      x_t_u_0.3m<-cbind(x_t_u_0.3m,c(x_conf_int[2,]))
+      mod1 <- lm(test.avg.robot_time ~ test.experience)
+      x_conf_int<-confint(mod1)
+      x_robot_time<-cbind(x_robot_time,c(x_conf_int[2,]))
+    }
+  }
+}
+
+colnames(x_safety)<-col_names
+colnames(x_separation)<-col_names
+colnames(x_hinder)<-col_names
+colnames(x_logic)<-col_names
+colnames(x_coworker)<-col_names
+colnames(x_t_u_0.3m)<-col_names
+colnames(x_robot_time)<-col_names
+print("safety scores")
+print(x_safety)
+print("avg. separation distance")
+print(x_separation)
+print("hinderance scores")
+print(x_hinder)
+print("logic scores")
+print(x_logic)
+print("coworker scores")
+print(x_coworker)
+print("avg. time separation under 0.3m")
+print(x_t_u_0.3m)
+print("avg. robot trajectory durations")
+print(x_robot_time)
+
+```
